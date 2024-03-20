@@ -2,26 +2,42 @@
   text-align: center;
 }
 
-div {
-  font-family: 'Montserrat, Arial, "Helvetica Neue", Helvetica, sans-serif';
+div, p, h1, h2 {
+  text-align: start;
+  font-family: arial, sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: #f9f9fdc0;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #cacaca;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f9f9fdc0;
 }
 
 .modal {
   z-index: 2;
-  height: 60%;
+  height: 80%;
   width: 50%;
   position: absolute;
-  top: 20%;
+  top: 10%;
   left: 25%;
-  background: aliceblue;
-  border: 1px solid lightgray;
-  border-radius: 25px;
+  background: whitesmoke;
+  border: 2px solid lightgray;
   padding: 20px;
-  opacity: 90%;
+  gap: 15px;
+  flex-direction: column;
+  overflow: auto;
 }
 
 .show {
-  display: block;
+  display: flex;
 }
 
 .hide {
@@ -44,8 +60,13 @@ div {
 
 
 
-.picture1 {
-  width: 50px;
+.picture0 {
+  width: 100%;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 20px;
 }
 
 

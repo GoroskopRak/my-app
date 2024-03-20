@@ -6,23 +6,28 @@ ymaps.ready(function () {
             searchControlProvider: 'yandex#search'
         })
 
-        const coordinats = [[56.8519, 60.6122],[56.9, 60.61]]
+        const coordinats = [[56.847306, 60.610967],[56.843619, 60.607006],[56.843678, 60.593369]]
 
         coordinats?.forEach((coord, i) => {
-            const myPlacemark = new ymaps.Placemark(coord, {
-                hintContent: 'Собственный значок метки',
-                balloonContent: 'Это красивая метка'
+        
+            const myPlacemark = new ymaps.GeoObject({
+                // Описание геометрии.
+                geometry: {
+                    type: "Point",
+                    coordinates: coord
+                },
+                // Свойства.
+                properties: {
+                    // Контент метки.
+                    // iconContent: 'Я тащусь',
+                    // hintContent: 'Ну давай уже тащи'
+                }
             }, {
                 // Опции.
-                // Необходимо указать данный тип макета.
-                iconLayout: 'default#image',
-                // Своё изображение иконки метки.
-                iconImageHref: 'images/myIcon.gif',
-                // Размеры метки.
-                iconImageSize: [30, 42],
-                // Смещение левого верхнего угла иконки относительно
-                // её "ножки" (точки привязки).
-                iconImageOffset: [-5, -38]
+                // Иконка метки будет растягиваться под размер ее содержимого.
+                preset: 'islands#blackStretchyIcon',
+                // Метку можно перемещать.
+                draggable: false
             })
 
             function addElement(e) {
@@ -33,41 +38,11 @@ ymaps.ready(function () {
 
             //Событие на клик по отметке
             myPlacemark.events.add([
-                'balloonopen'], (e) =>addElement(e));
+                'click'], (e) =>addElement(e));
 
                 //Рендерим метку на карту
                 myMap.geoObjects
-    .add(myPlacemark);
+                    .add(myPlacemark);
     
         })
-
-
-        // myPlacemark1 = new ymaps.Placemark(myMap.getCenter(), {
-        //     hintContent: 'Собственный значок метки',
-        //     balloonContent: 'Это красивая метка'
-        // }, {
-        //     // Опции.
-        //     // Необходимо указать данный тип макета.
-        //     iconLayout: 'default#image',
-        //     // Своё изображение иконки метки.
-        //     iconImageHref: 'images/myIcon.gif',
-        //     // Размеры метки.
-        //     iconImageSize: [30, 42],
-        //     // Смещение левого верхнего угла иконки относительно
-        //     // её "ножки" (точки привязки).
-        //     iconImageOffset: [-5, -38]
-        // })
-
-        // function addElement(e) {
-        //     const modal1 = document.getElementById("modal1");
-        //     modal1.classList.remove('hide')
-        //     modal1.classList.add('show')
-        //   }
-
-        // // Добавляем действие на клик по метке
-        // myPlacemark1.events.add([
-        //     'balloonopen'], (e) =>addElement(e));
-
-    // myMap.geoObjects
-    //     .add(myPlacemark1);
 });
